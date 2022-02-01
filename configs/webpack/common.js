@@ -24,7 +24,20 @@ module.exports = {
                 use: ["style-loader", "css-loader", "sass-loader"],
             },
             {
-                test: /\.(jpe?g|png|gif|svg)$/i,
+                test: /\.svg$/,
+                use: [{
+                    loader: '@svgr/webpack',
+                    options: {
+                        svgo: {
+                            plugins: [{
+                                removeViewBox: false,
+                            }]
+                        },
+                    },
+                }]
+            },
+            {
+                test: /\.(jpe?g|png|gif)$/i,
                 use: [
                     "file-loader?hash=sha512&digest=hex&name=img/[contenthash].[ext]",
                     "image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false",
