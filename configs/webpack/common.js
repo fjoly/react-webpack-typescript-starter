@@ -25,16 +25,19 @@ module.exports = {
             },
             {
                 test: /\.svg$/,
-                use: [{
+                use: {
                     loader: '@svgr/webpack',
                     options: {
-                        svgo: {
-                            plugins: [{
-                                removeViewBox: false,
-                            }]
-                        },
-                    },
-                }]
+                        svgoConfig: {
+                            plugins: [
+                                {
+                                    name: 'removeViewBox',
+                                    active: false
+                                }
+                            ]
+                        }
+                    }
+                }
             },
             {
                 test: /\.(jpe?g|png|gif)$/i,
